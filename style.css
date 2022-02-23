@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.calculator {
+    min-width: 300px;
+    width: 30vw;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.calculator .display {
+    background-color: #acb996;
+    font-family: monospace;
+    font-size: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.calculator .numpad {
+    font-family: sans-serif;
+    font-size: 1.5em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: auto;
+}
+
+.button, .number {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(209, 196, 178);
+    border: 1px solid gray;
+    border-radius: 5%;
+    margin: 0.5rem;
+}
+
+
+
+
+
+#b1 {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#b2 {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#b3 {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#b4 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#b5 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#b6 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#b7 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#b8 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#b9 {
+    grid-column: 3;
+    grid-row: 1;
+}
+#b0 {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+#bd {
+    grid-column: 1;
+    grid-row: 4;
+}
+
+#plus {
+    grid-column: 4;
+    grid-row: 4;
+}
+
+#minus {
+    grid-column: 4;
+    grid-row: 3;
+}
+
+#times {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+#divide {
+    grid-column: 4;
+    grid-row: 1;
+}
+#equal {
+    grid-column: 3;
+    grid-row: 4;
+}
+
+#clear{
+    background-color: #d68c37;
+    grid-column: 1 / 3;
+    grid-row: 5;
+    aspect-ratio: 2;
+}
