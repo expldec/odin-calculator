@@ -45,8 +45,6 @@ function operate(operator,a,b) {
 }
 
 
-const calcArgs = {};
-const display = document.querySelector('.display');
 
 function updateDisplay(obj) {
     if (obj.hasOwnProperty('op') && obj.hasOwnProperty('b')) {
@@ -142,6 +140,10 @@ function pressClear(e) {
 function logKey(e) {
     console.log(e);
 }
+
+
+const calcArgs = {};
+const display = document.querySelector('.display');
 
 const numberButtons = Array.from(document.querySelectorAll('.number'));
 numberButtons.forEach(button => button.addEventListener('click', pressNumber));
