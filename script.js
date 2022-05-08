@@ -71,8 +71,8 @@ function createOrAppend(obj, key, value) {
     obj.hasOwnProperty(key) ? obj[key] += value : obj[key] = value;
 }
 
-function pressNumber(e) {
-    thisNumber = e['target']['textContent'].toString(); 
+function pressNumber(e,numberKey) {
+    thisNumber = e ? e['target']['textContent'].toString(): numberKey; 
 // check for state: are we displaying a result (as marked by '' being the operator)?
 // if so, reset the calculator to a blank state and type the number
     if (calcArgs['op'] === '') {
@@ -93,8 +93,8 @@ function pressNumber(e) {
     updateDisplay(calcArgs);
 }
 
-function pressOperator(e) {
-    thisOp = e['target']['textContent']; 
+function pressOperator(e,opKey) {
+    thisOp = e ? e['target']['textContent']: opKey;
 // check if a second argument is set (implying we have formed a valid expression)
 // if that's the case: calculate the result, make it the start of a new calculation
 // and add the operator we just pressed. 
@@ -124,10 +124,6 @@ function pressEqual(e) {
     delete calcArgs['b'];
     updateDisplay({a:result});
     }
-
-    else {
-        console.log('doing nothing');
-    }
 }
 
 function pressClear(e) {
@@ -137,13 +133,27 @@ function pressClear(e) {
     updateDisplay(calcArgs);
 }
 
-function logKey(e) {
-    console.log(e);
+function typeKey(e) {
+    console.log(e['key'],e['keyCode'], typeof(e['keyCode']));
+    if (numbers.includes(parseInt(e['key']))) {
+        pressNumber('',e['key']);
+    }
+    else if (operators.includes(e['key'])) {
+        pressOperator('',e['key']);
+    }
+    else if (e['keyCode'] === 13) {
+        pressEqual();
+    }
+    else if (e['keyCode'] === 46) {
+        pressClear();
+    }
 }
 
 
 const calcArgs = {};
 const display = document.querySelector('.display');
+const numbers = [0,1,2,3,4,5,6,7,8,9]
+const operators = ['+','-','*','/']
 
 const numberButtons = Array.from(document.querySelectorAll('.number'));
 numberButtons.forEach(button => button.addEventListener('click', pressNumber));
@@ -153,4 +163,5 @@ const equalsButton = document.querySelector('#equal');
 equalsButton.addEventListener('click', pressEqual);
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', pressClear);
-document.addEventListener('keydown',logKey);
+
+document.addEventListener('keydown',typeKey);
